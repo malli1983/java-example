@@ -1,3 +1,5 @@
 #!/bin/bash -ex
 
-./gradlew test
+
+docker run -v $PWD:/code -it java-demo-app /bin/bash ./test.sh
+# ./gradlew test

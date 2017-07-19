@@ -18,7 +18,7 @@ pipeline {
         checkout scm
       }
     }
-    
+
     stage('Build Image') {
       steps {
         sh './build.sh'
@@ -45,8 +45,9 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh 'docker build -t java-demo-app .'
-        sh 'docker run -v $PWD:/code -it java-demo-app /bin/bash ./test.sh'
+        sh './test.sh'
+        // sh 'docker build -t java-demo-app .'
+        // sh 'docker run -v $PWD:/code -it java-demo-app /bin/bash ./test.sh'
 
         junit 'build/test-results/test/*.xml'
       }
