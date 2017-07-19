@@ -3,7 +3,7 @@
 
 docker run \
         -v $PWD:/code \
-        java-demo-app /bin/bash /root/.sdkman/candidates/gradle/current/bin/gradle test
+        java-demo-app /bin/bash -c -l 'source ~/.bashrc && gradle test'
 # ./gradlew test
 
 # docker run -it -v $PWD:/code java-demo-app /bin/bash
