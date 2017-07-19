@@ -18,13 +18,22 @@ pipeline {
         checkout scm
       }
     }
-    stage('Build Jar') {
+    
+    stage('Build Image') {
       steps {
         sh './build.sh'
-
-         archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
       }
     }
+
+    // stage('Build Jar') {
+    //   steps {
+    //     sh 'docker build -t java-demo-app .'
+    //     sh 'docker run -v $PWD:/code -it java-demo-app /bin/bash ./build.sh'
+    //     // sh './build.sh'
+    //
+    //      archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
+    //   }
+    // }
 
     // stage('Build deb') {
     //   steps {
@@ -36,7 +45,8 @@ pipeline {
 
     stage('Test') {
       steps {
-        sh './test.sh'
+        sh 'docker build -t java-demo-app .'
+        sh 'docker run -v $PWD:/code -it java-demo-app /bin/bash ./test.sh'
 
         junit 'build/test-results/test/*.xml'
       }
@@ -72,7 +82,7 @@ pipeline {
     //   }
     // }
   }
-  
+
 
   post {
     failure {
