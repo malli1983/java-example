@@ -1,18 +1,15 @@
 # Java Example
+
+This project is intended to act as an example of how one might construct a CI/CD Jenkins pipeline for a Java application
 An example of using Java with embedded Jenkins Pipeline
 
-### Build & Run Container
+## Running Tests
+
+Jenkins will follow instructions laid out in Jenkinsfile.  You can can mimic the actions with:
 
 ```bash
-$ docker build -t java-demo-app .
+$ ./build.sh
+$ ./test.sh
 ```
 
-<!-- docker run -v $PWD:/code -p 8080:8080 -it java-demo-app /bin/bash -l -c 'cd /code && gradle build && java -jar build/libs/gs-spring-boot-0.1.0.jar' -->
-
-```bash
-$ docker run -v $PWD:/code -p 8080:8080 -it java-demo-app /bin/bash -l -c 'gradle bootRun'
-```
-
-```bash
-$ docker run -v $PWD:/code -it java-demo-app /bin/bash ./test.sh
-```
+The Jenkins pipeline is available here: https://jenkins.conjur.net/job/java-example/job/master/

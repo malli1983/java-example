@@ -30,7 +30,6 @@ pipeline {
         sh './test.sh'
 
         junit 'build/test-results/test/*.xml'
-        archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
       }
     }
 
@@ -45,35 +44,12 @@ pipeline {
     //   }
     // }
 
-    // stage('Publish deb'){
+    // stage('Publish'){
     //   steps {
     //     sh './publish.sh'
     //   }
     // }
     //
-    // stage('Push image') {
-    //   steps {
-    //     sh './push-image.sh'
-    //   }
-    // }
-    //
-    // stage('Publish website') {
-    //   when {
-    //     branch 'master'
-    //   }
-    //   steps {
-    //     sh 'summon ./website.sh'
-    //   }
-    // }
-    //
-    // stage('Push to Heroku') {
-    //   when {
-    //     branch 'master'
-    //   }
-    //   steps {
-    //     build job: 'release-heroku', parameters: [string(name: 'APP_NAME', value: 'possum-conjur')]
-    //   }
-    // }
   }
 
 
