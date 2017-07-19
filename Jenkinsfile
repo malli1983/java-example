@@ -25,6 +25,16 @@ pipeline {
       }
     }
 
+    stage('Test') {
+      steps {
+        sh './test.sh'
+
+        junit 'build/test-results/test/*.xml'
+        archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
+      }
+    }
+
+
     // stage('Build Jar') {
     //   steps {
     //     sh 'docker build -t java-demo-app .'
@@ -34,24 +44,6 @@ pipeline {
     //      archiveArtifacts artifacts: 'build/libs/*.jar', fingerprint: true
     //   }
     // }
-
-    // stage('Build deb') {
-    //   steps {
-    //     sh './package.sh'
-    //
-    //     archiveArtifacts artifacts: '*.deb', fingerprint: true
-    //   }
-    // }
-
-    stage('Test') {
-      steps {
-        sh './test.sh'
-        // sh 'docker build -t java-demo-app .'
-        // sh 'docker run -v $PWD:/code -it java-demo-app /bin/bash ./test.sh'
-
-        junit 'build/test-results/test/*.xml'
-      }
-    }
 
     // stage('Publish deb'){
     //   steps {
